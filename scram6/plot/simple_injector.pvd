@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<VTKFile type="Collection" version="0.1" byte_order="LittleEndian">
+<Collection>
+<DataSet timestep="2.369641987236084679e-04" group="" part="0" file="simple_injector-t0024.pvtu"/>
+</Collection>
+</VTKFile>

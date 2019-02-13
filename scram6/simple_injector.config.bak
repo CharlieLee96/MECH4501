@@ -1,0 +1,666 @@
+{
+"title": "simple_injector",
+"grid_format": "gziptext",
+"flow_format": "gziptext",
+"gas_model_file": "H2air-model.lua",
+"udf_supervisor_file": "",
+"include_quality": false,
+"dimensions": 2,
+"axisymmetric": true,
+"interpolation_order": 2,
+"interpolation_delay": 0.000000000000000000e+00,
+"strang_splitting": "full_T_full_R",
+"gasdynamic_update_scheme": "euler",
+"residual_smoothing": false,
+"residual_smoothing_weight": 2.000000000000000111e-01,
+"coupling_with_solid_domains": "tight",
+"solid_has_isotropic_properties": true,
+"solid_has_homogeneous_properties": true,
+"solid_domain_loose_update_options" : {
+   "max_newton_iterations" : 10,
+   "tolerance_newton_update" : 1.000000000000000021e-02,
+   "max_gmres_iterations" : 10,
+   "tolerance_gmres_solve" : 1.000000000000000021e-03,
+   "perturbation_size" : 1.000000000000000021e-02 
+},
+"MHD": false,
+"MHD_static_field": false,
+"MHD_resistive": false,
+"divergence_cleaning": false,
+"divB_damping_length": 1.000000000000000000e+00,
+"apply_bcs_in_parallel": true,
+"flowstate_limits_max_velocity": 3.000000000000000000e+04,
+"flowstate_limits_max_tke": 1.797693134862315633e+306,
+"flowstate_limits_min_tke": 0.000000000000000000e+00,
+"flowstate_limits_max_temp": 5.000000000000000000e+04,
+"flowstate_limits_min_temp": 0.000000000000000000e+00,
+"max_invalid_cells": 0,
+"adjust_invalid_cell_data": false,
+"report_invalid_cells": true,
+"thermo_interpolator": "rhou",
+"allow_reconstruction_for_energy_modes": true,
+"interpolate_in_local_frame": true,
+"apply_limiter": true,
+"extrema_clipping": true,
+"unstructured_limiter": "venkat",
+"use_extended_stencil": false,
+"venkat_K_value": 2.999999999999999889e-01,
+"flux_calculator": "adaptive_efm_ausmdv",
+"compression_tolerance": -2.999999999999999889e-01,
+"shear_tolerance": 2.000000000000000111e-01,
+"M_inf": 1.000000000000000021e-02,
+"artificial_compressibility": false,
+"ac_alpha": 1.000000000000000056e-01,
+"grid_motion": "none",
+"write_vertex_velocities": false,
+"udf_grid_motion_file": "dummy-grid-motion-file.txt",
+"shock_fitting_delay": 1.500000000000000031e-03,
+"shock_fitting_interpolation_order": 1,
+"shock_fitting_scale_factor": 5.000000000000000000e-01,
+"viscous": true,
+"use_viscosity_from_cells": false,
+"spatial_deriv_from_many_points": true,
+"spatial_deriv_calc": "divergence",
+"spatial_deriv_locn": "vertices",
+"include_ghost_cells_in_spatial_deriv_clouds": true,
+"suppress_reconstruction_at_boundaries": false,
+"suppress_reconstruction_at_captured_shocks": false,
+"viscous_delay": 0.000000000000000000e+00,
+"shear_stress_relative_limit": 2.500000000000000000e-01,
+"mass_diffusion_model": "none",
+"constant_lewis_number": false,
+"lewis_number": 1.000000000000000000e+00,
+"separate_update_for_viscous_terms": false,
+"separate_update_for_k_omega_source": false,
+"turbulence_model": "none",
+"turbulence_prandtl_number": 8.900000000000000133e-01,
+"turbulence_schmidt_number": 7.500000000000000000e-01,
+"max_mu_t_factor": 3.000000000000000000e+02,
+"transient_mu_t_factor": 1.000000000000000000e+00,
+"limit_tke_production": false,
+"tke_production_limit_in_kelvins": 5.000000000000000000e+00,
+"udf_source_terms_file": "dummy-source-terms.txt",
+"udf_source_terms": false,
+"reacting": false,
+"reactions_file": "chemistry.lua",
+"reaction_time_delay": 0.000000000000000000e+00,
+"T_frozen": 3.000000000000000000e+02,
+"T_frozen_energy": 3.000000000000000000e+02,
+"tci_model": "none",
+"ignition_time_start": 0.000000000000000000e+00,
+"ignition_time_stop": 0.000000000000000000e+00,
+"energy_exchange_file": "energy-exchange.lua",
+"control_count": 10,
+"nfluidblock": 5,
+"diffuse_wall_bcs_on_init": false,
+"number_init_passes": 30,
+"wall_temperature_on_init": -1.000000000000000000e+00,
+"thermionic_emission_bc_time_delay": 0.000000000000000000e+00,
+"shape_sensitivity_calculator_options" : {
+   "gradient_method": "adjoint",
+   "gradient_verification": true,
+   "epsilon": 1.000000000000000048e-04,
+   "mu": 1.000000000000000048e-04,
+   "eta": 1.000000000000000048e-04,
+   "delta": 1.000000000000000048e-04,
+   "gmres_restart_interval": 85,
+   "stop_on_relative_global_residual": 9.999999999999999791e-17,
+   "tol_bezier_curve_fit": 9.999999999999999547e-07,
+   "max_steps_bezier_curve_fit": 10000,
+   "user_defined_objective_file": "dummy-obj-file.lua"
+},
+"block_marching": false,
+"nib": 1,
+"njb": 1,
+"nkb": 1,
+"propagate_inflow_data": false,
+"save_intermediate_results": false,
+"boundary_group_for_loads": "loads",
+"compute_loads": true,
+"compute_run_time_loads": false,
+"run_time_loads_count": 100,
+"nhcell": 0,
+"nsolidhcell": 0,
+"n-reaction-zones": 0,
+"n-ignition-zones": 0,
+"n-turbulent-zones": 0,
+"udf_solid_source_terms_file": "dummy-solid-source-terms.txt",
+"udf_solid_source_terms": false,
+"nsolidblock": 0,
+"block_0": {
+    "type": "FluidBlock",
+    "label": "BLOCK-0",
+    "active": true,
+    "omegaz": 0.000000000000000000e+00,
+    "grid_type": "structured_grid",
+    "nic": 8,
+    "njc": 20,
+    "nkc": 1,
+    "boundary_north": {"label": "", 
+        "type": "wall_with_slip", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type" : "internal_copy_then_reflect"}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "copy_cell_data"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_east": {"label": "", 
+        "type": "exchange_over_full_face", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "full_face_copy", "other_block": 4, "other_face": "west", "orientation": 0, "reorient_vector_quantities": false, "Rmatrix": [1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00]}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "update_thermo_trans_coeffs"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_south": {"label": "", 
+        "type": "wall_with_slip", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type" : "internal_copy_then_reflect"}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "copy_cell_data"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_west": {"label": "", 
+        "type": "inflow_supersonic", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "flowstate_copy", "flowstate": {"p": 5.051000000000000000e+04, "T": 1.100000000000000000e+03, "T_modes": [], "massf": [ 0.000000000000000000e+00, 2.200000000000000011e-01, 7.800000000000000266e-01], "quality": 1.000000000000000000e+00, "velx": 1.144860639917638036e+04, "vely": 0.000000000000000000e+00, "velz": 0.000000000000000000e+00, "Bx": 0.000000000000000000e+00, "By": 0.000000000000000000e+00, "Bz": 0.000000000000000000e+00, "psi": 0.000000000000000000e+00, "divB": 0.000000000000000000e+00, "tke": 0.000000000000000000e+00, "omega": 1.000000000000000000e+00, "mu_t": 0.000000000000000000e+00, "k_t": 0.000000000000000000e+00, "S": 0}}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type": "flow_state_copy_to_interface", "flowstate": {"p": 5.051000000000000000e+04, "T": 1.100000000000000000e+03, "T_modes": [], "massf": [ 0.000000000000000000e+00, 2.200000000000000011e-01, 7.800000000000000266e-01], "quality": 1.000000000000000000e+00, "velx": 1.144860639917638036e+04, "vely": 0.000000000000000000e+00, "velz": 0.000000000000000000e+00, "Bx": 0.000000000000000000e+00, "By": 0.000000000000000000e+00, "Bz": 0.000000000000000000e+00, "psi": 0.000000000000000000e+00, "divB": 0.000000000000000000e+00, "tke": 0.000000000000000000e+00, "omega": 1.000000000000000000e+00, "mu_t": 0.000000000000000000e+00, "k_t": 0.000000000000000000e+00, "S": 0}}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "dummy_entry_without_trailing_comma": 0
+},
+"block_1": {
+    "type": "FluidBlock",
+    "label": "BLOCK-1",
+    "active": true,
+    "omegaz": 0.000000000000000000e+00,
+    "grid_type": "structured_grid",
+    "nic": 2,
+    "njc": 3,
+    "nkc": 1,
+    "boundary_north": {"label": "", 
+        "type": "outflow_simple_extrapolate", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "extrapolate_copy", "x_order": 0}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_east": {"label": "", 
+        "type": "wall_with_slip", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type" : "internal_copy_then_reflect"}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "copy_cell_data"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_south": {"label": "", 
+        "type": "wall_with_slip", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type" : "internal_copy_then_reflect"}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "copy_cell_data"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_west": {"label": "", 
+        "type": "wall_with_slip", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type" : "internal_copy_then_reflect"}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "copy_cell_data"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "dummy_entry_without_trailing_comma": 0
+},
+"block_2": {
+    "type": "FluidBlock",
+    "label": "BLOCK-2",
+    "active": true,
+    "omegaz": 0.000000000000000000e+00,
+    "grid_type": "structured_grid",
+    "nic": 2,
+    "njc": 20,
+    "nkc": 1,
+    "boundary_north": {"label": "", 
+        "type": "wall_with_slip", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type" : "internal_copy_then_reflect"}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "copy_cell_data"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_east": {"label": "", 
+        "type": "outflow_simple_extrapolate", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "extrapolate_copy", "x_order": 0}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_south": {"label": "", 
+        "type": "exchange_over_full_face", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "full_face_copy", "other_block": 1, "other_face": "north", "orientation": 0, "reorient_vector_quantities": false, "Rmatrix": [1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00]}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "update_thermo_trans_coeffs"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_west": {"label": "", 
+        "type": "exchange_over_full_face", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "full_face_copy", "other_block": 0, "other_face": "east", "orientation": 0, "reorient_vector_quantities": false, "Rmatrix": [1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00]}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "update_thermo_trans_coeffs"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "dummy_entry_without_trailing_comma": 0
+},
+"block_3": {
+    "type": "FluidBlock",
+    "label": "BLOCK-3",
+    "active": true,
+    "omegaz": 0.000000000000000000e+00,
+    "grid_type": "structured_grid",
+    "nic": 20,
+    "njc": 20,
+    "nkc": 1,
+    "boundary_north": {"label": "", 
+        "type": "wall_with_slip", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type" : "internal_copy_then_reflect"}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "copy_cell_data"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_east": {"label": "", 
+        "type": "outflow_simple_extrapolate", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "extrapolate_copy", "x_order": 0}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_south": {"label": "", 
+        "type": "exchange_over_full_face", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "full_face_copy", "other_block": 1, "other_face": "north", "orientation": 0, "reorient_vector_quantities": false, "Rmatrix": [1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00]}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "update_thermo_trans_coeffs"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_west": {"label": "", 
+        "type": "exchange_over_full_face", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "full_face_copy", "other_block": 0, "other_face": "east", "orientation": 0, "reorient_vector_quantities": false, "Rmatrix": [1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00]}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "update_thermo_trans_coeffs"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "dummy_entry_without_trailing_comma": 0
+},
+"block_4": {
+    "type": "FluidBlock",
+    "label": "BLOCK-4",
+    "active": true,
+    "omegaz": 0.000000000000000000e+00,
+    "grid_type": "structured_grid",
+    "nic": 20,
+    "njc": 20,
+    "nkc": 1,
+    "boundary_north": {"label": "", 
+        "type": "wall_with_slip", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type" : "internal_copy_then_reflect"}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "copy_cell_data"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_east": {"label": "", 
+        "type": "outflow_simple_extrapolate", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "extrapolate_copy", "x_order": 0}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_south": {"label": "", 
+        "type": "exchange_over_full_face", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "full_face_copy", "other_block": 1, "other_face": "north", "orientation": 0, "reorient_vector_quantities": false, "Rmatrix": [1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00]}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "update_thermo_trans_coeffs"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "boundary_west": {"label": "", 
+        "type": "exchange_over_full_face", 
+        "group": "", 
+        "is_wall_with_viscous_effects": false, 
+        "ghost_cell_data_available": true, 
+        "convective_flux_computed_in_bc": false, 
+        "is_design_surface": false, 
+        "num_cntrl_pts": 0, 
+        "pre_recon_action": [
+          {"type": "full_face_copy", "other_block": 0, "other_face": "east", "orientation": 0, "reorient_vector_quantities": false, "Rmatrix": [1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 0.000000000000000000e+00, 1.000000000000000000e+00]}
+        ],
+        "post_conv_flux_action": [
+
+        ],
+        "pre_spatial_deriv_action_at_bndry_faces": [
+          {"type" : "update_thermo_trans_coeffs"}
+        ],
+        "pre_spatial_deriv_action_at_bndry_cells": [
+
+        ],
+        "post_diff_flux_action": [
+
+        ]
+    },
+    "dummy_entry_without_trailing_comma": 0
+},
+"dummy_entry_without_trailing_comma": 0
+}
