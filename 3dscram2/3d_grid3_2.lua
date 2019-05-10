@@ -6,24 +6,24 @@ config.axisymmetric = false
 --nsp, nmodes, gm = setGasModel('ideal-air-gas-model.lua')
 --print("GasModel set to ideal air. nsp= ", nsp, " nmodes= ", nmodes)
 
-setGasModel('H2air-model.lua')
-massf_air={N2=0.78,O2=0.22}
-massf_fuel={H2=1.0}
+nsp, nmodes, gm = setGasModel('H2air-model.lua')
+massf_air={H2=0.0,N2=0.78,O2=0.22}
+massf_fuel={H2=1.0,N2=0.0,O2=0.0}
 ----setting up flow conditions
 --Mach numbers
 M_inf = 5.63 --combustor freestream flow condition specified by Landsberg at Mach 10
-M_inj = 2 --start with sonic injection (choking occurs at injector)
+M_inj = 1.5 --start with sonic injection (choking occurs at injector)
 --freestream flow conditions
 Pinf = 7.69e3 --landsberg
-Patm=Pinf/20
+Patm=Pinf/5
 inf_T=254
 inf_dummy = FlowState:new{p=Pinf, T=inf_T,massf=massf_air} --landsberg
 inf_vx = M_inf * inf_dummy.a
-inf = FlowState:new{p=Pinf, T=inf_T, vely = inf_vx, massf=massf_air} -- freestream flow condition at combustor
+inf = FlowState:new{p=Pinf, T=inf_T, velx = inf_vx, massf=massf_air} -- freestream flow condition at combustor
 print("T at inlet	=",inf.T)
 print("P at inlet	=",inf.p)
 print("rho at inlet	=",inf.rho)
-initial = FlowState:new{p=Patm, T=inf_T, velx=0,velz=0,massf=massf_air} --initial state with zero velocity to be set upon each block
+initial = FlowState:new{p=Patm, T=inf_T, velx=0.0,vely=0,velz=0,massf=massf_air} --initial state with zero velocity to be set upon each block
 print("initial_done") 
 --Injector conditions
 --inj_P = 1.0e+7
@@ -45,39 +45,39 @@ print("rho at injector	=",inj.rho)
 print("Vx at the inlet is	: ",inf_vx)
 print("Vz at the injector is	: ",inj_vz)
 --w	=5.542e-3
-w	=1.639e-3
+w	=1.962e-3
 ymax	=20.0e-3
 xmax	=100.0e-3
 xinj	=30.00e-3
-yinj	=w
-injw 	= 4*w
+yinj	=0.5*w
+
 H=ymax
 print("ready for grid")
 
 aa00 = Vector3:new{x=0.0, 	y=0.0,	z=0.0}
 aa01 = Vector3:new{x=xinj, 	y=0.0,	z=0.0}
-aa02 = Vector3:new{x=(xinj+4*w), y=0.0,	z=0.0}
+aa02 = Vector3:new{x=(xinj+w), y=0.0,	z=0.0}
 aa03 = Vector3:new{x=xmax, 	y=0.0,	z=0.0}
 ab00 = Vector3:new{x=0.0, 	y=yinj,z=0.0}
 ab01 = Vector3:new{x=xinj, 	y=yinj,z=0.0}
-ab02 = Vector3:new{x=(xinj+4*w), y=yinj,z=0.0}
+ab02 = Vector3:new{x=(xinj+w), y=yinj,z=0.0}
 ab03 = Vector3:new{x=xmax, 	y=yinj,z=0.0}
 ac00 = Vector3:new{x=0.0, 	y=ymax,z=0.0}
 ac01 = Vector3:new{x=xinj, 	y=ymax,z=0.0}
-ac02 = Vector3:new{x=(xinj+4*w), y=ymax,z=0.0}
+ac02 = Vector3:new{x=(xinj+w), y=ymax,z=0.0}
 ac03 = Vector3:new{x=xmax, 	y=ymax,z=0.0}
 
 ba00 = Vector3:new{x=0.0, 	y=0.0,	z=H}
 ba01 = Vector3:new{x=xinj, 	y=0.0,	z=H}
-ba02 = Vector3:new{x=(xinj+4*w), y=0.0,	z=H}
+ba02 = Vector3:new{x=(xinj+w), y=0.0,	z=H}
 ba03 = Vector3:new{x=xmax, 	y=0.0,	z=H}
 bb00 = Vector3:new{x=0.0, 	y=yinj,z=H}
 bb01 = Vector3:new{x=xinj, 	y=yinj,z=H}
-bb02 = Vector3:new{x=(xinj+4*w), y=yinj,z=H}
+bb02 = Vector3:new{x=(xinj+w), y=yinj,z=H}
 bb03 = Vector3:new{x=xmax, 	y=yinj,z=H}
 bc00 = Vector3:new{x=0.0, 	y=ymax,z=H}
 bc01 = Vector3:new{x=xinj, 	y=ymax,z=H}
-bc02 = Vector3:new{x=(xinj+4*w), y=ymax,z=H}
+bc02 = Vector3:new{x=(xinj+w), y=ymax,z=H}
 bc03 = Vector3:new{x=xmax, 	y=ymax,z=H}
 --define clustering a bit (1 is strongest)
 
@@ -88,13 +88,13 @@ cf1_1 = RobertsFunction:new{end0=false,end1=true,beta=1.1}
 cf1_3 = RobertsFunction:new{end0=false,end1=true,beta=1.3}
 cf1_5 = RobertsFunction:new{end0=false,end1=true,beta=1.5}
 
-rcfL = RobertsFunction:new{end0=true, end1=false, beta=1.02}
-rcfR = RobertsFunction:new{end0=false, end1=true, beta=1.02}
-rcfz = RobertsFunction:new{end0=true, end1=false, beta=1.01}
+rcfL = RobertsFunction:new{end0=true, end1=false, beta=1.05}
+rcfR = RobertsFunction:new{end0=false, end1=true, beta=1.05}
+rcfz = RobertsFunction:new{end0=true, end1=false, beta=1.05}
 
 
 --3d blocks
-nx0 = 30; nx1 = 20; nx2=60; ny0 = 10; ny1 = 30;  nz = 60
+nx0 = 20; nx1 = 20; nx2=40; ny0 = 10; ny1 = 30;  nz = 40
 
 v0l={aa00,aa01,ab01,ab00,ba00,ba01,bb01,bb00}
 v1l={aa01,aa02,ab02,ab01,ba01,ba02,bb02,bb01}
@@ -146,22 +146,24 @@ identifyBlockConnections()
 --F_inj.bcList[bottom] = InFlowBC_Supersonic:new{flowState=inj}
 --F_out.bcList[north] = OutFlowBC_Simple:new{}
 --F_out2.bcList[north] = OutFlowBC_Simple:new{}
-max_t=0.001
+max_t=0.0001
 max_step=10000000
 -- Do a little more setting of global data.
-config.flux_calculator="adaptive_efm_ausmdv"
+config.flux_calculator="ausmdv"
 config.gasdynamic_update_scheme='euler'
-config.cfl_value = 0.25
+config.cfl_value = 0.5
 config.moving_grid=false
 config.viscous=true
+config.viscous_signal_factor=0.0
+config.interpolation_order=1
 --config.turbulence_model="adaptive"
 config.thermo_interpolator="pT"
 config.max_invalid_cells=200
 config.adjust_invalid_cell_data=false
 config.max_time = max_t -- seconds
 config.max_step = max_step
-config.dt_init = 1.0e-7
-config.dt_plot = 1e-5
+config.dt_init = 1.0e-8
+config.dt_plot = 5e-6
 --config.dt_history = config.max_time/100.0
 --config.dt_history = 1.0e-8
 --config.dt_loads = 1.0e-8 --calculate loads at evert 1.0e-5 seconds
