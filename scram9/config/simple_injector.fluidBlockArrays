@@ -1,0 +1,7 @@
+-- A description of the fluidBlockArrays in Lua code.
+-- Use dofile() to get the content into your interpreter.
+fluidBlockArrays = {
+} -- end fluidBlockArrays
+whichFluidBlockArray = {
+
+} -- end whichBlockArray

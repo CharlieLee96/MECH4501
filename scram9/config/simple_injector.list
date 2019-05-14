@@ -1,0 +1,4 @@
+# indx type label ncells
+   0 structured_grid BLOCK-0 3750
+   1 structured_grid BLOCK-1 375
+   2 structured_grid BLOCK-2 8750

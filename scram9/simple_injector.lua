@@ -81,54 +81,53 @@ quad0 = CoonsPatch:new{north=b0b1, east=a1b1, south=a0a1, west=a0b0}
 quad1 = CoonsPatch:new{north=b1b2, east=a2b2, south=a1a2, west=a1b1}
 quad2 = CoonsPatch:new{north=b2b3, east=a3b3, south=a2a3, west=a2b2}
 --do some clustering
-rcfR = RobertsFunction:new{end0=false, end1=true, beta=1.05}
-rcfL = RobertsFunction:new{end0=true, end1=false, beta=1.05}
-cfList1={east=rcfL,west=rcfL} -- clusters blk1
-cfList0={north=rcfR,east=rcfL,south=rcfR,west=rcfL}-- clusters blk0
-cfList2={north=rcfL,east=rcfL,south=rcfL,west=rcfL} -- clusters blk2
+rcfL = RobertsFunction:new{end0=true, end1=false, beta=1.02}
+rcfR = RobertsFunction:new{end0=false, end1=true, beta=1.02}
+rcfD = RobertsFunction:new{end0=true, end1=false, beta=1.01}
+cfList1={east=rcfD,west=rcfD} -- clusters blk1
+cfList0={north=rcfR,east=rcfD,south=rcfR,west=rcfD}-- clusters blk0
+cfList2={north=rcfL,east=rcfD,south=rcfL,west=rcfD} -- clusters blk2
 
 -- Mesh the patches, with particular discretisation.
-nx0 = 20; nx1 = 10; nx2 = 600; ny = 100
+nx0 = 30; nx1 = 3; nx2 = 70; ny = 125
 blk0 = StructuredGrid:new{psurface=quad0, niv=nx0+1, njv=ny+1,cfList=cfList0}
 blk1 = StructuredGrid:new{psurface=quad1, niv=nx1+1, njv=ny+1,cfList=cfList1}
 blk2 = StructuredGrid:new{psurface=quad2, niv=nx2+1, njv=ny+1,cfList=cfList2}
 -- Define the flow-solution blocks.
-F_inf = FluidBlock:new{grid=blk0, initialState= initial}
-F_inj = FluidBlock:new{grid=blk1, initialState= initial}
-F_out = FluidBlock:new{grid=blk2, initialState = initial}
+F_inf = FluidBlock:new{grid=blk0, initialState= inf}
+F_inj = FluidBlock:new{grid=blk1, initialState= inf}
+F_out = FluidBlock:new{grid=blk2, initialState = inf}
 identifyBlockConnections()
+
 -- Set boundary conditions.
 F_inf.bcList[west] = InFlowBC_Supersonic:new{flowState=inf}
 --F_inf.bcList[east] = OutFlowBC_Simple:new{}
 --F_inj.bcList[west] = InFlowBC_ConstFlux:new{flowState=inf}
---F_inj.bcList[south] = InFlowBC_ShockFitting:new{flowState=inj}
+F_inf.bcList[south] = WallBC_NoSlip_Adiabatic:new{}
 
 F_inj.bcList[south] = InFlowBC_Supersonic:new{flowState=inj}
 --F_inj.bcList[south] = InFlowBC_FromStagnation:new{stagnationState=inj}
 --F_inj.bcList[north] = WallBC_WithSlip:new{}
 --F_out.bcList[west] = InFlowBC_Supersonic:new{flowState=inf}
 F_out.bcList[east] = OutFlowBC_Simple:new{}
+F_out.bcList[south] = WallBC_NoSlip_Adiabatic:new{}
 
---history points on the cell with error ([0.0301, 0.0114586, 0])
-setHistoryPoint{x=0.0301,y=0.0114586,z=0}
-
-max_t=0.03
+max_t=1e-4
 max_step=10000000
 -- Do a little more setting of global data.
 config.flux_calculator="adaptive_efm_ausmdv"
 config.gasdynamic_update_scheme='euler'
-config.cfl_value = 0.25
-config.moving_grid=false
---config.viscous=true
---config.turbulence_model="adaptive"
-config.thermo_interpolator="pT"
+config.thermo_interpolator='pT'
 config.max_invalid_cells=20
-config.adjust_invalid_cell_data=true
+config.adjust_invalid_cell_data='true'
+config.cfl_value = 0.5
+config.moving_grid=false
+config.viscous=true
+--config.turbulence_model="adaptive"
 config.max_time = max_t -- seconds
 config.max_step = max_step
 config.dt_init = 1.0e-9
 config.dt_plot = 1e-5
 --config.dt_history = config.max_time/100.0
-config.dt_history = 1.0e-8
---config.dt_loads = 1.0e-8 --calculate loads at evert 1.0e-5 seconds
+--config.dt_history = 10.0e-7
 --dofile("sketch-domain.lua")
